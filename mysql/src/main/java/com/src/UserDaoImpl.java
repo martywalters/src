@@ -23,7 +23,25 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public Optional<User> findById(int id) {
-		// TODO Auto-generated method stub
+		var conn = Database.instance().getConnection();
+		List<User> users = new ArrayList<>();
+		try {
+			
+			var stmt = conn.prepareStatement("Select  * from user where id=?");
+			stmt.setInt(1, id);
+			var rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				var name = rs.getString("name");
+				User user = new User(id,name);
+				return Optional.of(user);
+			}
+			stmt.close();
+						
+		} catch (SQLException e) {
+			throw new DaoException(e);
+		}
+		
 		return Optional.empty();
 	}
 
