@@ -24,7 +24,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public Optional<User> findById(int id) {
 		var conn = Database.instance().getConnection();
-		List<User> users = new ArrayList<>();
+		//List<User> users = new ArrayList<>();
 		try {
 			
 			var stmt = conn.prepareStatement("Select  * from user where id=?");

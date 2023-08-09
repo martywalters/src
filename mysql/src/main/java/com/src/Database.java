@@ -3,6 +3,7 @@ package com.src;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class Database {
 	private static Database db = new Database();
@@ -14,8 +15,14 @@ public class Database {
 	private Database() {
 		
 	}
-	public void connect() throws SQLException {
-		conn = DriverManager.getConnection(URI,"root","password");
+	public void connect(Properties props) throws SQLException {
+		String server = props.getProperty("server");
+		String port = props.getProperty("port");
+		String database = props.getProperty("database");
+		String user = props.getProperty("user");
+		String password = props.getProperty("password");
+		String url = String.format("jdbc:mysql://%s:%s/%s", server,port,database);
+		conn = DriverManager.getConnection(url,user, password);
 		
 	}
 	public void close() throws SQLException {

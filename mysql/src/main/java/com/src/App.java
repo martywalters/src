@@ -1,18 +1,39 @@
 package com.src;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  * Hello world!
  *
  */
 public class App {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		System.out.println("Hello World!");
+		Properties p=new Properties(); 
+		try {
+			FileReader reader=new FileReader("db.properties");
+		    //Properties p=new Properties();  
+		    p.load(reader);  
+		      
+		    System.out.println(p.getProperty("user"));  
+		    System.out.println(p.getProperty("password"));  
+			
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}  
+		
+		
+		
 		var db = Database.instance();
 
 		try {
-			db.connect();
+			db.connect(p);
 		} catch (SQLException e) {
 			System.out.println("Connot connect to database");
 		}
