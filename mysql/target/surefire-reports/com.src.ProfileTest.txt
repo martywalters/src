@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.src.ProfileTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.049 s <<< FAILURE! - in com.src.ProfileTest
+testLoadDBCofig(com.src.ProfileTest)  Time elapsed: 0.029 s  <<< FAILURE!
+org.junit.ComparisonFailure: dbname incorrect expected:<people[test]> but was:<people[]>
+	at com.src.ProfileTest.testLoadDBCofig(ProfileTest.java:19)
+
