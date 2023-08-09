@@ -26,6 +26,9 @@ public class App {
 		var userOpt = userDao.findById(5);
 		if (userOpt.isPresent()) {
 			System.out.println("retrived: " + userOpt.get());
+			User user = userOpt.get();
+			user.setName("Marty");
+			userDao.update(user);
 		} else {
 			System.out.println("no user retrieved");
 		}
@@ -35,6 +38,12 @@ public class App {
 		} else {
 			System.out.println("no user retrieved");
 		}
+		
+		userDao.delete(new User(9,null));
+		
+		
+		
+		
 
 		try {
 			db.close();
